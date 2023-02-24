@@ -160,62 +160,6 @@ opcion.addEventListener('change', () => {
     }
 });
 
-// //data.find((tasa) => {
-//     const li = document.createElement('li')
-//     li.innerHTML = `
-//         <h4>${producto.nombre}</h4>
-//         <p>${producto.precio}</p>
-//         <p>Código: ${producto.id}</p>
-//         <hr/>
-//     `
-//     lista.append(li)
-// })
-
-
-// do {
-//     opcion = prompt("Elija una opcion: 1) Ganancia a partir del valor de su producto y el dinero invertido. 2) Valor de su producto indicando porcentaje de descuento. 3) Ingrese otro usuario. 4) Ver lista de usuarios. salir) Para terminar el proceso.");
-//     switch (opcion) {
-//         case "1":
-//             let dineroInvertido = 0;
-//             let ganancia = 0;
-//             let gananciaPlata = document.getElementById("gananciaPlata");
-//             valorProducto = prompt("Ingrese el precio del producto");
-//             dineroInvertido = prompt("Ingrese el dinero invertido en el producto");
-//             ganancia = restar(valorProducto, dineroInvertido);
-//             gananciaPlata.innerHTML = "El valor del producto ingresado es: " + valorProducto + ", el dinero que invirtio es: " + dineroInvertido + " y su ganancia fue de: " + ganancia;
-//             break;
-//         case "2":
-//             let porcentaje = 0;
-//             let valorDescontado = 0;
-//             let productoDescontado = 0;
-//             let costoProducto = document.getElementById("costoProducto");
-//             valorProducto = prompt("Ingrese el valor de su producto");
-//             porcentaje = prompt("Indique el porcentaje de descuento que quiere ofrecer");
-//             valorDescontado = descuento(valorProducto, porcentaje);
-//             productoDescontado = restar(valorProducto, valorDescontado);
-//             costoProducto.innerHTML = "Se desconto el " + porcentaje + "%" + " del total del producto quedando en: " + productoDescontado;
-//             break;
-//         case "3":
-//             let persona2 = new Usuario(nombre = prompt("Ingrese su nombre"), edad = prompt("Ingrese su edad"), producto = prompt("Ingrese el producto a vender"), email = prompt("Ingrese su email"));
-//             listaUsuarios.push(persona2);
-//         case "4":
-//             let parrafo = document.createElement("p");
-//             parrafo.innerHTML = "Esta es la lista de Usuarios ingresados: ";
-//             document.body.append(parrafo);
-//             let listaPersonas = document.createElement("div");
-//             document.body.append(listaPersonas);
-//             for (let i = 0; i < listaUsuarios.length; i++) {
-//                 let li = document.createElement("li");
-//                 li.innerHTML = JSON.stringify(listaUsuarios[i]);
-//                 listaPersonas.appendChild(li);
-//             }
-//         case "salir":
-//             break;
-//         default:
-//             alert("Ingrese una opcion valida!");
-//     }
-// } while (opcion != "salir");
-
 function restar(valor1, valor2) {
     let total = valor1 - valor2;
     return total;
