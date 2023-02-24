@@ -107,8 +107,70 @@ opcion.addEventListener('change', () => {
             }
             contenedor.appendChild(listaPersonas);
             break;
+        case "4":
+            contenedor.innerHTML = `
+                <label>Cuanto queres cobrar?</label>
+                <br>
+                <input id="cobro">
+                <br>
+                <label>Indique el modo de pago</label>
+                <br>
+                <select name="opcion" id="opcion">
+                    <option value="default">Elija una opcion</option>
+                    <option id="checkout" value="1">Checkout Tienda online</option>
+                    <option id="link" value="2">Link de pago</option>
+                    <option id="codigoQR" value="3">Codigo QR</option>
+                </select>
+                <br>
+                <label>Cuando queres recibir el dinero?</label>
+                <br>
+                <select name="opcion" id="opcion">
+                    <option value="default">Elija una opcion</option>
+                    <option id="dia1" value="1">En el momento</option>
+                    <option id="dia10" value="2">En 10 dias</option>
+                    <option id="dia21" value="3">En 21 dias</option>
+                </select>
+                <br>
+                <br>
+                <button id="calcular">Calcular</button>
+            `
+            fetch('/PFJS-GARRIDO2/data.json')
+                .then((res) => res.json())
+                .then((data) => {
+
+                    data.forEach((tasa) => {
+                        let boton_calcular = document.querySelector('#calcular')
+                        boton_calcular.onclick = () => {
+                            let cobro = document.querySelector("#cobro");
+                            let tasaLiberacion = tasa.porcentajeTasa;
+                            let resultado = descuento(cobro, tasaLiberacion);
+                            let descuentoTasa = restar(cobro, resultado);
+                            let h3 = document.createElement("h3");
+                            h3.innerHTML = `Recibiras un total de $${resultado}.
+                            <br>
+                            Tasa de liberacion: ${descuentoTasa}
+                            ${tasaLiberacion} + IVA
+                            `;
+                            contenedor.append(h3);
+                        }
+                    })
+                    
+                })
+            break;
     }
 });
+
+// //data.find((tasa) => {
+//     const li = document.createElement('li')
+//     li.innerHTML = `
+//         <h4>${producto.nombre}</h4>
+//         <p>${producto.precio}</p>
+//         <p>Código: ${producto.id}</p>
+//         <hr/>
+//     `
+//     lista.append(li)
+// })
+
 
 // do {
 //     opcion = prompt("Elija una opcion: 1) Ganancia a partir del valor de su producto y el dinero invertido. 2) Valor de su producto indicando porcentaje de descuento. 3) Ingrese otro usuario. 4) Ver lista de usuarios. salir) Para terminar el proceso.");
