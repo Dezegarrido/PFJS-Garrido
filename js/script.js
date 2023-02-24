@@ -12,7 +12,7 @@ const opcion = document.querySelector('#opcion');
 
 //POP-UP Inicio de sesion
 Swal.fire({
-    allowOutsideClick : false,
+    allowOutsideClick: false,
     title: 'Inicia sesion',
     html: `<input type="text" id="login" class="swal2-input" placeholder="Usuario">
     <input type="password" id="password" class="swal2-input" placeholder="Contraseña">`,
@@ -69,16 +69,30 @@ opcion.addEventListener('change', () => {
             }
             break;
         case "2":
-            contenedor.innerHTML = "";
-            let porcentaje = 0;
-            let valorDescontado = 0;
-            let productoDescontado = 0;
-            let costoProducto = document.getElementById("costoProducto");
-            valorProducto = prompt("Ingrese el valor de su producto");
-            porcentaje = prompt("Indique el porcentaje de descuento que quiere ofrecer");
-            valorDescontado = descuento(valorProducto, porcentaje);
-            productoDescontado = restar(valorProducto, valorDescontado);
-            costoProducto.innerHTML = "Se desconto el " + porcentaje + "%" + " del total del producto quedando en: " + productoDescontado;
+            contenedor.innerHTML = `
+                    <label>Ingrese el costo del producto</label>
+                    <br>
+                    <input id="costo">
+                    <br>
+                    <label>Indique el porcentaje de descuento que quiere ofrecer</label>
+                    <br>
+                    <input id="porcentaje">
+                    <br>
+                    <br>
+                    <button id="calcular">Calcular</button>
+            `
+            let boton_calcular = document.querySelector('#calcular')
+            boton_calcular.onclick = () => {
+                let valorDescontado = 0;
+                let productoDescontado = 0;
+                let valorProducto = document.querySelector("#costo").value;
+                let porcentaje = document.querySelector("#porcentaje").value;
+                valorDescontado = descuento(valorProducto, porcentaje);
+                productoDescontado = restar(valorProducto, valorDescontado);
+                let h3 = document.createElement("h3");
+                h3.innerHTML = `Se desconto el ${porcentaje}% del total del producto quedando en: ${productoDescontado}`;
+                contenedor.append(h3)
+            }
             break;
         case "3":
             contenedor.innerHTML = "";
