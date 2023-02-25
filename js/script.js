@@ -137,26 +137,12 @@ opcion.addEventListener('change', () => {
             fetch('/PFJS-GARRIDO2/data.json')
                 .then((res) => res.json())
                 .then((data) => {
-
-                    data.forEach((tasa) => {
-                        let boton_calcular = document.querySelector('#calcular')
-                        boton_calcular.onclick = () => {
-                            let cobro = document.querySelector("#cobro");
-                            let tasaLiberacion = tasa.porcentajeTasa;
-                            let resultado = descuento(cobro, tasaLiberacion);
-                            let descuentoTasa = restar(cobro, resultado);
-                            let h3 = document.createElement("h3");
-                            h3.innerHTML = `Recibiras un total de $${resultado}.
-                            <br>
-                            Tasa de liberacion: ${descuentoTasa}
-                            ${tasaLiberacion} + IVA
-                            `;
-                            contenedor.append(h3);
-                        }
-                    })
-                    
+                    let boton_calcular = document.querySelector('#calcular')
+                    boton_calcular.onclick = () => {
+                        tasaLiberacion(data);
+                    }
                 })
-            break;
+        break;
     }
 });
 
@@ -169,3 +155,16 @@ function descuento(valor1, valor2) {
     return total;
 }
 
+function tasaLiberacion(tasa){
+    let cobro = document.querySelector("#cobro");
+    let tasaLiberacion = tasa.porcentajeTasa;
+    let resultado = descuento(cobro, tasaLiberacion);
+    let descuentoTasa = restar(cobro, resultado);
+    let h3 = document.createElement("h3");
+    h3.innerHTML = `Recibiras un total de $${resultado}.
+    <br>
+    Tasa de liberacion: ${descuentoTasa}
+    ${tasaLiberacion} + IVA
+    `;
+    contenedor.append(h3);
+}
